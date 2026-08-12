@@ -1,0 +1,232 @@
+name: "Aya Yousef"
+headline: "AI/ML Engineer | Deep Learning & NLP | Full-Stack Development"
+
+# Master on/off switch per top-level section.
+sections:
+  summary: true
+  experience: true
+  projects: true
+  education: true
+  skills: true
+  certifications: true
+  languages: true
+  photo: true
+
+contact:
+  location: "Saint Petersburg, Russia"
+  phone: "+7 (931) 284-20-04"
+  email: "eng.aya.yousef.2000@gmail.com"
+  linkedin_display: "linkedin.com/in/ayayousef"
+  linkedin_url: "https://www.linkedin.com/in/ayayousef/"
+  github_display: "github.com/ayayousef2000"
+  github_url: "https://github.com/ayayousef2000"
+
+photo: headshot.jpg
+
+summary: >
+  AI/ML-focused software engineer with an MSc (Honors) in Software Engineering from ITMO University and
+  a BSc in Information Technology from Tartous University, Syria. I specialize in applying machine learning to practical,
+  real-world applications, with a strong foundation in modern web and mobile development.
+  My technical foundation spans Python, JavaScript, TypeScript, React, and React Native,
+  complemented by strong fundamentals in object-oriented programming, version control,
+  and software testing. I build user-centric web and mobile applications, with a focus on
+  bringing machine learning capabilities directly into the browser for fast, private, on-device experiences.
+  I'm passionate about writing clean, performant code and applying ML in practical,
+  deployable ways — whether that's a responsive web app, a cross-platform mobile experience,
+  or an ML-powered feature running entirely client-side.
+
+# -----------------------------------------------------------------------
+# EXPERIENCE
+# -----------------------------------------------------------------------
+
+experience:
+  - include: true
+    title: "Freelance AI/ML Engineer"
+    company: "Self-employed"
+    location: "Remote"
+    start: "Mar 2026"
+    end: "Present"
+    bullets:
+      - "Integrated a browser-based sentiment analysis model, developed through Master's thesis research, into the company's website to automatically classify customer reviews."
+      - "Designed the system to retain only the sentiment classification and a short review summary — not the full review text — improving customer data privacy and reducing server-side processing/storage load."
+      - "Delivered results formally recognized via a signed Act of Implementation (Jun 2026) confirming practical adoption of the research."
+
+# -----------------------------------------------------------------------
+# PROJECTS
+# -----------------------------------------------------------------------
+projects:
+  - include: true
+    name: "Research on the Application of Machine Learning Methods for Natural Language Processing in the Frontend"
+    organization: "Associated with ITMO University"
+    start: "Sep 2024"
+    end: "Jun 2026"
+    bullets:
+      - "Built a full-stack multilingual (English, Arabic, Russian) sentiment analysis system running entirely client-side, eliminating server inference."
+      - "Fine-tuned DistilBERT, converted to ONNX with INT8 quantization — 75% smaller with negligible quality loss; achieved 94.91ms latency and 0.72 F1-macro."
+      - "Implemented multi-threaded in-browser inference (React, TypeScript, WebAssembly, Web Workers) with automatic WebGPU/WASM fallback."
+      - "Published the model on Hugging Face and deployed via CI/CD (GitHub Actions) to Yandex Serverless."
+    technologies:
+      - "Python"
+      - "PyTorch"
+      - "Hugging Face Transformers"
+      - "ONNX Runtime Web"
+      - "React"
+      - "TypeScript"
+      - "WebAssembly"
+      - "Web Workers"
+      - "WebGPU"
+    links: []
+
+  - include: true
+    name: "My Car"
+    organization: "Associated with Tartous University"
+    start: "Mar 2023"
+    end: "Sep 2023"
+    bullets:
+      - "Built a Flutter companion app for an in-vehicle sensor device, visualizing live location, status, weather, and malfunction alerts."
+      - "Implemented multi-language support and theme customization."
+    technologies:
+      - "Flutter"
+      - "Front-End Development"
+      - "Mobile App Development"
+    links: []
+
+# -----------------------------------------------------------------------
+# EDUCATION
+# -----------------------------------------------------------------------
+education:
+  - include: true
+    degree: "MSc (Honors), Web Technologies"
+    institution: "ITMO University"
+    location: "Saint Petersburg, Russia"
+    start: "Oct 2023"
+    end: "Jul 2026"
+    details:
+      - "Graduated with Honors (Red Diploma), GPA 5.0/5.0."
+      - 'Thesis: "Research on the Application of Machine Learning Methods for Natural Language Processing in the Frontend" — moving ML models out of the backend and directly into the browser, instead of relying on server-side API calls.'
+      - "Worked across NLP & transformer models, model optimization (ONNX conversion, INT8 quantization), in-browser ML inference (WebAssembly, Web Workers), WebGPU/WASM backend fallback systems, cross-platform development (React, React Native), and automated benchmarking/evaluation pipelines."
+      - "Delivered a full-stack multilingual sentiment analysis system (English, Arabic, Russian) running entirely client-side, with the fine-tuned model published on Hugging Face and the application deployed via CI/CD."
+
+  - include: true
+    degree: "BSc, Information Technology"
+    institution: "Tartous University"
+    location: "Tartous, Syria"
+    start: "Oct 2018"
+    end: "Oct 2023"
+    details:
+      - "Graduated with a grade of 82.15%."
+      - "Activities: ICPC (International Collegiate Programming Contest)."
+      - "Program covered mathematics, computing, information systems, software engineering, data systems, and intelligent technologies."
+
+# -----------------------------------------------------------------------
+# SKILLS
+# -----------------------------------------------------------------------
+skills:
+  - category: "AI/ML & NLP"
+    items:
+      - "Artificial Intelligence (AI)"
+      - "Machine Learning"
+      - "Deep Learning"
+      - "Natural Language Processing (NLP)"
+      - "Sentiment Analysis"
+      - "Logistic Regression"
+      - "Transformer Models"
+      - "PyTorch"
+      - "TensorFlow"
+      - "Model Optimization (ONNX, INT8 Quantization)"
+      - "Data Analysis"
+
+  - category: "On-Device / In-Browser ML"
+    items:
+      - "WebAssembly (WASM)"
+      - "WebGPU"
+      - "Web Workers"
+      - "Client-Side Inference"
+
+  - category: "Full-Stack & Mobile Development"
+    items:
+      - "JavaScript"
+      - "TypeScript"
+      - "React.js"
+      - "React Native"
+      - "Flutter"
+      - "Node.js"
+      - "Front-End Development"
+      - "Back-End Web Development"
+      - "Full-Stack Development"
+      - "Cross-platform Development"
+      - "Responsive Web Design"
+
+  - category: "Programming & CS Fundamentals"
+    items:
+      - "Python (Programming Language)"
+      - "Object-Oriented Programming (OOP)"
+      - "Data Structures"
+      - "Unit Testing"
+      - "Debugging"
+
+  - category: "Tools & Infrastructure"
+    items:
+      - "Git"
+      - "GitHub"
+      - "Version Control"
+      - "Docker"
+      - "CI/CD (GitHub Actions)"
+      - "Firebase"
+      - "Databases"
+
+  - category: "Design"
+    items:
+      - "UI/UX Design"
+      - "Web Application Design"
+
+# -----------------------------------------------------------------------
+# CERTIFICATIONS
+# -----------------------------------------------------------------------
+certifications:
+  - include: true
+    name: "Natural Language Processing with Classification and Vector Spaces"
+    issuer: "DeepLearning.AI"
+    date: "Jul 2026"
+  - include: true
+    name: "Programming with JavaScript"
+    issuer: "Meta"
+    date: "Aug 2025"
+  - include: true
+    name: "Introduction to Mobile Development"
+    issuer: "Meta"
+    date: "Jul 2025"
+  - include: true
+    name: "Version Control"
+    issuer: "Meta"
+    date: "Jul 2025"
+  - include: true
+    name: "Programming in Python"
+    issuer: "Meta"
+    date: "Jul 2025"
+  - include: true
+    name: "Introduction to Back-End Development"
+    issuer: "Meta"
+    date: "Jul 2025"
+  - include: true
+    name: "Introduction to Front-End Development"
+    issuer: "Meta"
+    date: "Jun 2025"
+  - include: true
+    name: "Get Started with Figma"
+    issuer: "Coursera"
+    date: "Mar 2023"
+
+# -----------------------------------------------------------------------
+# LANGUAGES
+# -----------------------------------------------------------------------
+languages:
+  - include: true
+    name: "Arabic"
+    level: "Native"
+  - include: true
+    name: "English"
+    level: "B2"
+  - include: true
+    name: "Russian"
+    level: "B1"

@@ -1,0 +1,28 @@
+applicant_name: "Aya Yousef"
+applicant_contact:
+  location: "Saint Petersburg, Russia"
+  phone: "+7 (931) 284-20-04"
+  email: "eng.aya.yousef.2000@gmail.com"
+  linkedin_display: "linkedin.com/in/ayayousef"
+  linkedin_url: "https://www.linkedin.com/in/ayayousef/"
+  github_display: "github.com/ayayousef2000"
+  github_url: "https://github.com/ayayousef2000"
+
+date: "[DATE]"
+
+recipient:
+  name: null
+  title: "Hiring Manager"
+  company: "[COMPANY NAME]"
+  company_address: null
+
+role_title: "[JOB TITLE]"
+salutation: "Dear Hiring Manager,"
+
+body_paragraphs:
+  - "I'm writing to apply for the [JOB TITLE] role at [COMPANY NAME]. I hold an MSc (Honors, Red Diploma) in Web Technologies from ITMO University and a BSc in Information Technology from Tartous University, and I specialize in applying machine learning to practical, deployable web and mobile products."
+  - "For my Master's thesis, I designed and built a full-stack multilingual (English, Arabic, Russian) sentiment analysis system that runs entirely in the browser — fine-tuning a DistilBERT model, converting it to ONNX with INT8 quantization for a 75% size reduction, and implementing multi-threaded in-browser inference with automatic WebGPU/WASM fallback. The result was a 94.91ms average latency and 0.72 F1-macro score, and the work has since been formally adopted in production via a signed Act of Implementation."
+  - "Alongside this AI/ML focus, my background spans full-stack and mobile development — Python, JavaScript/TypeScript, React, React Native, and Flutter — giving me a practical foundation for taking ML features from research prototype to shipped product."
+  - "I'd welcome the opportunity to discuss how this background could contribute to [COMPANY NAME]'s work. Thank you for your time and consideration."
+
+closing: "Sincerely,"

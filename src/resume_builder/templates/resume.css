@@ -1,0 +1,162 @@
+@page {
+  size: A4;
+  margin: 15mm;
+
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-size: 8pt;
+    color: #555;
+    font-family: "Liberation Sans", Arial, sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Liberation Sans", Arial, sans-serif;
+  font-size: 10.8pt;
+  line-height: 1.42;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 2px solid #1f3a5f;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.photo {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.header-text h1 {
+  font-size: 20pt;
+  margin: 0 0 1px 0;
+  color: #1f3a5f;
+  letter-spacing: 0.2px;
+}
+
+.headline {
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: #33507a;
+  margin: 0 0 5px 0;
+}
+
+.contact-line {
+  font-size: 9pt;
+  color: #444;
+  margin: 0;
+}
+
+.contact-line a {
+  color: #33507a;
+  text-decoration: none;
+}
+
+.contact-links {
+  margin-top: 1px;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  font-size: 12pt;
+  color: #1f3a5f;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid #c7d2e0;
+  padding-bottom: 2px;
+  margin: 0 0 7px 0;
+}
+
+.summary {
+  margin: 0;
+}
+
+/* ---------- Entries (experience / education) ---------- */
+.entry {
+  margin-bottom: 7px;
+  /* break-inside: avoid; */
+  /* Disabled: caused large blank gaps at page breaks when an entry didn't
+     fully fit in remaining space (WeasyPrint pushes the whole block to the
+     next page rather than splitting it). Trade-off: entries can now split
+     mid-bullet across a page break instead. Re-enable only after trimming
+     content enough that pages balance naturally — see resume.yaml skills/
+     experience sections for what's still oversized. */
+}
+
+.entry-header {
+  display: table;
+  width: 100%;
+  font-weight: 700;
+}
+
+.entry-title {
+  display: table-cell;
+  font-size: 10.3pt;
+}
+
+.entry-dates {
+  display: table-cell;
+  font-size: 9pt;
+  color: #555;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.entry-subline {
+  font-size: 9pt;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 2px;
+}
+
+.entry-tech {
+  font-size: 9.3pt;
+  color: #333;
+  margin: 3px 0 0 0;
+}
+
+.entry-links {
+  font-size: 9pt;
+  margin: 2px 0 0 0;
+}
+
+.entry-links a {
+  color: #33507a;
+  text-decoration: none;
+}
+
+ul {
+  margin: 2px 0 0 0;
+  padding-left: 16px;
+}
+
+li {
+  margin-bottom: 1px;
+}
+
+/* ---------- Skills / certs / languages ---------- */
+.skill-line {
+  margin: 0 0 4px 0;
+}
+
+.cert-list {
+  margin: 0;
+  padding-left: 16px;
+}

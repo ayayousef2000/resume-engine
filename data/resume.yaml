@@ -1,7 +1,6 @@
 name: "Aya Yousef"
 headline: "AI/ML Engineer | Deep Learning & NLP | Full-Stack Development"
 
-# Master on/off switch per top-level section.
 sections:
   summary: true
   experience: true
@@ -38,7 +37,6 @@ summary: >
 # -----------------------------------------------------------------------
 # EXPERIENCE
 # -----------------------------------------------------------------------
-
 experience:
   - include: true
     title: "Freelance AI/ML Engineer"

@@ -1,0 +1,18 @@
+# Code owners are auto-requested for review on every PR.
+# Pair this with a branch ruleset that enables "Require review from Code Owners".
+# https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+*                                   @ayayousef2000
+
+# Security-relevant: public no-auth API, upload validation, path containment.
+/src/resume_builder/api.py          @ayayousef2000
+/src/resume_builder/middleware.py   @ayayousef2000
+/src/resume_builder/models.py       @ayayousef2000
+/src/resume_builder/render.py       @ayayousef2000
+
+# CI/CD, container, deploy and dependency policy.
+/.github/                           @ayayousef2000
+/docker/                            @ayayousef2000
+/render.yaml                        @ayayousef2000
+/pyproject.toml                     @ayayousef2000
+/uv.lock                            @ayayousef2000

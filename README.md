@@ -12,8 +12,6 @@ once in YAML (or send it as JSON), get a clean single-column PDF that
 applicant-tracking systems can parse — from the command line, a JSON API, or a
 web form.
 
-**Live demo:** [resume-engine-sud4.onrender.com](https://resume-engine-sud4.onrender.com)
-· **API docs:** [`/docs`](https://resume-engine-sud4.onrender.com/docs)
 
 ```mermaid
 flowchart LR

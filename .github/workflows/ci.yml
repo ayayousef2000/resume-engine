@@ -63,6 +63,31 @@ jobs:
       - run: uv run ruff check --output-format=github .
       - run: uv run ruff format --check .
 
+  build:
+    name: Compile & package build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: true
+          cache-suffix: build
+          download-from-astral-mirror: false
+      - run: uv sync --group dev
+      # Catches a syntax error in a module no test imports.
+      - name: Byte-compile sources, scripts and tests
+        run: uv run python -m compileall -q src scripts tests
+      - name: Build the sdist and wheel
+        run: uv build
+      - name: Check the wheel ships the package and its templates
+        run: |
+          python3 -m zipfile -l dist/*.whl > wheel-files.txt
+          grep -q 'resume_builder/render.py' wheel-files.txt
+          grep -q 'resume_builder/templates/resume.css' wheel-files.txt
+
   spelling:
     name: Spelling
     runs-on: ubuntu-24.04
@@ -203,6 +228,13 @@ jobs:
       # CI on it would block every unrelated PR, Dependabot's fix included.
       - name: Audit dev dependencies (report only)
         run: bash scripts/audit.sh dev
+      # web/ holds build tooling only (Tailwind, fonts, js-yaml); the built files
+      # are committed, so nothing from node_modules ships. Reported as a warning,
+      # like the dev dependency audit: a Dependabot npm PR is the fix, and failing
+      # every unrelated PR on a tooling advisory would block that PR too.
+      - name: Audit web build tooling (npm, report only)
+        working-directory: web
+        run: npm audit --audit-level=high || echo "::warning::npm audit found high-severity advisories in web/ build tooling; see the log above"
 
   docker:
     name: Docker build & smoke test
@@ -284,7 +316,7 @@ jobs:
   ci-passed:
     name: ci-passed
     if: always()
-    needs: [verify-pr-source, lint, spelling, typecheck, test, schema, web-assets, security, docker]
+    needs: [verify-pr-source, lint, build, spelling, typecheck, test, schema, web-assets, security, docker]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:

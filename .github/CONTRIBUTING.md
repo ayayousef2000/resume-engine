@@ -95,7 +95,7 @@ merge still fails if there's a real conflict.
 | Restrict deletions / Block force pushes | ✅ / ✅ |
 | Require a pull request before merging | ✅ (0 approvals while solo) |
 | Require status checks to pass | ✅ — **`ci-passed`**; require branches up to date ✅ |
-| Allowed merge methods | **Squash** (one commit per feature / Dependabot PR) |
+| Allowed merge methods | **Merge** (each PR stays visible as a merge commit, with its own commits intact) |
 
 "Automatically delete head branches" never deletes `develop` after a release
 PR, because it is the default branch; "Restrict deletions" is the second guard.
@@ -112,7 +112,7 @@ that binding.
 | --- | --- |
 | Default branch | `develop` |
 | Features | Issues ✅; Wikis ❌, Projects ❌, Discussions ❌ (nothing here uses them) |
-| Pull requests → merge buttons | **Allow merge commits** ✅ (release PRs), **Allow squash merging** ✅ (feature PRs), **Allow rebase merging** ❌ — the rulesets narrow each branch further |
+| Pull requests → merge buttons | **Allow merge commits** ✅, **Allow squash merging** ❌, **Allow rebase merging** ❌ — every PR into `develop` or `main` is a merge commit |
 | Pull requests → other | **Always suggest updating pull request branches** ✅, **Automatically delete head branches** ✅, Allow auto-merge ❌ |
 
 ### Actions — Settings → Actions → General

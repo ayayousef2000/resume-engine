@@ -66,6 +66,10 @@ Keep both lists sorted. Words that only appear in machine-maintained strings
 **Default branch** (Settings → General): **`develop`**, so new PRs target it by
 default, Dependabot reads its config from it, and scheduled workflows run on it.
 
+The two rulesets below are also saved as importable JSON in [`rulesets/`](rulesets/): Settings → Rules →
+Rulesets → **New ruleset → Import a ruleset**, pick the file, then **Create**. Import them only after a PR
+has run `ci-passed` once, so GitHub can find the check name.
+
 **`protect-main`** (target: `main`)
 
 | Setting | Value |
@@ -101,6 +105,29 @@ has no source-branch rule. The **`verify-pr-source`** job in
 [`workflows/ci.yml`](workflows/ci.yml) fails any PR into `main` whose head
 isn't this repository's `develop`; making it a required check is what makes
 that binding.
+
+### General — Settings → General
+
+| Setting | Value |
+| --- | --- |
+| Default branch | `develop` |
+| Features | Issues ✅; Wikis ❌, Projects ❌, Discussions ❌ (nothing here uses them) |
+| Pull requests → merge buttons | **Allow merge commits** ✅ (release PRs), **Allow squash merging** ✅ (feature PRs), **Allow rebase merging** ❌ — the rulesets narrow each branch further |
+| Pull requests → other | **Always suggest updating pull request branches** ✅, **Automatically delete head branches** ✅, Allow auto-merge ❌ |
+
+### Actions — Settings → Actions → General
+
+| Setting | Value |
+| --- | --- |
+| Actions permissions | **Allow ayayousef2000, and select non-ayayousef2000, actions and reusable workflows**, with **Require actions to be pinned to a full-length commit SHA** ✅ (every workflow here already pins SHAs) |
+| Workflow permissions | **Read repository contents and packages permissions**; "Allow GitHub Actions to create and approve pull requests" ❌ |
+| Fork pull request workflows | **Require approval for all external contributors** |
+
+### Environments — Settings → Environments
+
+None needed: production is deployed by Render from `main` (see [Deploy](#deploy)), not by an Actions
+job. Create an environment only if a workflow starts deploying, and put the secrets and a required reviewer
+on it.
 
 ### Security — Settings → Advanced Security
 
@@ -142,12 +169,13 @@ Runs on PRs, pushes to `main` / `develop`, and manual dispatch.
 | --- | --- |
 | `verify-pr-source` | Blocks PRs into `main` that don't come from `develop` |
 | `Lint & format` | `ruff check` (inline PR annotations) + `ruff format --check` |
+| `Compile & package build` | `compileall` over `src`, `scripts` and `tests`, then `uv build` (sdist + wheel) and a check that the wheel ships the package and its templates |
 | `Spelling` | cspell over the whole repo with `cspell.json`; unknown words are annotated inline with suggestions |
 | `Type check` | `mypy --strict` over `src` |
 | `Test (3.12 / 3.13 / 3.14)` | pytest + coverage (the run fails below the `fail_under` threshold in `pyproject.toml`) on the `requires-python` floor, the version between and the production version; Codecov upload from 3.14 |
 | `JSON Schema up to date` | Regenerates `schema/*.schema.json` and fails if any differs from the committed file |
 | `Web assets up to date` | Rebuilds the web form's CSS, fonts and vendored js-yaml from `web/` and fails if they differ from the committed files in `src/resume_builder/web_static/assets/` |
-| `Dependency audit` | [`scripts/audit.sh`](../scripts/audit.sh) (also `make audit`): `pip-audit` on `uv.lock`; runtime packages (what ships in the image) **block**, dev-only tooling is reported as a warning since Dependabot security PRs fix those. PyPI network errors are retried with backoff; a real finding fails at once |
+| `Dependency audit` | [`scripts/audit.sh`](../scripts/audit.sh) (also `make audit`): `pip-audit` on `uv.lock`; runtime packages (what ships in the image) **block**, dev-only tooling is reported as a warning since Dependabot security PRs fix those. `npm audit` on `web/` (build tooling only, nothing ships) is reported the same way. PyPI network errors are retried with backoff; a real finding fails at once |
 | `Docker build & smoke test` | Trivy config scan of both Dockerfiles (accepted exceptions in [`.trivyignore.yaml`](../.trivyignore.yaml)), builds `Dockerfile.prod`, boots it, and checks `/healthz`, `/`, the page's assets and its Content-Security-Policy header, a real PDF render from `data/resume.template.yaml`, and that an invalid photo is a clean `422` |
 | `ci-passed` | Aggregate gate — the single required check (skipped jobs count as passing) |
 
@@ -187,7 +215,7 @@ checks pass, so a red CI run never reaches production.
 
 ## 4. Dependency automation — [`dependabot.yml`](dependabot.yml)
 
-Five ecosystems, weekly (Monday 04:00 UTC), all opening PRs against
+Six ecosystems, weekly (Monday 04:00 UTC), all opening PRs against
 **`develop`**:
 
 | Ecosystem | Scans |
@@ -197,6 +225,7 @@ Five ecosystems, weekly (Monday 04:00 UTC), all opening PRs against
 | `github-actions` | SHA pins + version comments in `.github/workflows/` |
 | `devcontainers` | Features in `.devcontainer/devcontainer.json` (+ lock file) |
 | `pre-commit` | Hook `rev`s in `.pre-commit-config.yaml` |
+| `npm` | `web/package.json` + lock file (build tooling for the web form's committed assets) |
 
 - Minor + patch bumps are **grouped** into one PR per ecosystem; **majors**
   arrive individually. Security updates are grouped separately.
@@ -232,4 +261,5 @@ Five ecosystems, weekly (Monday 04:00 UTC), all opening PRs against
 | `labels.yml` | Repository labels as code |
 | `pull_request_template.md` | PR checklist |
 | `ISSUE_TEMPLATE/` | Issue forms; blank issues disabled |
+| `rulesets/` | Importable JSON for the `protect-main` and `protect-develop` rulesets |
 | `workflows/` | `ci.yml`, `security.yml`, `scorecard.yml`, `labels.yml` |
